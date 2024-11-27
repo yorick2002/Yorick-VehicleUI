@@ -1,36 +1,18 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
-import { useNuiEvent } from "./utils/useNuiEvents";
-import { fetchNui } from "./utils/fetchNui";
+
+// Pages
+
+import { Home } from "../src/pages/Home"
+import { Settings } from "../src/pages/Settings"
 
 export const App = () => {
 
-    const [nui, setNui] = useState(false) // This makes sure that the NUI is false on startup of the resource
-
-    useNuiEvent("setOpen", setNui)
-
-    const escFunction = useCallback((event: { key: string; }) => {
-        if (event.key === "Escape") {
-            setNui(false)
-            fetchNui("closeMenu")
-        }
-    }, [])
-
-    useEffect(() => {
-        document.addEventListener("keydown", escFunction, false);
-
-        return () => {
-            document.removeEventListener("keydown", escFunction, false);
-        };
-    }, [escFunction]);
-
-    return nui ? (
+    return (
         <HashRouter basename="/">
             <Routes>
-                {/* Routes here */}
+                <Route path="/" element={<Home />} />
+                <Route path="/settings" element={<Settings />} />
             </Routes>
         </HashRouter>
-    ) : null;
+    )
 };
-
-export default App;

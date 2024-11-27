@@ -1,0 +1,17 @@
+.slider {
+    background-color: white;
+    appearance: none;
+    margin-top: 1.75rem;
+    height: 0.2rem
+}
+
+/* Styles for Firefox */
+.slider::-moz-range-thumb {
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 100%;
+}
